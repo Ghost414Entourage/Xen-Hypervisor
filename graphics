@@ -1,0 +1,38 @@
+sudo nano /etc/gdm/custom.conf
+
+#WaylandEnable=false
+
+
+sudo systemctl restart gdm
+
+
+echo $XDG_SESSION_TYPE
+
+
+systemctl status display-manager
+
+
+sudo systemctl start display-manager
+
+
+sudo systemctl enable display-manager
+
+
+startx
+
+
+sudo systemctl start gdm
+
+
+sudo systemctl start lightdm
+
+
+sudo systemctl start sddm
+
+
+sudo systemctl set-default graphical.target
+sudo systemctl isolate graphical.target
+
+
+loginctl show-session $(loginctl | grep $(whoami) | awk '{print $1}') -p Type
+
