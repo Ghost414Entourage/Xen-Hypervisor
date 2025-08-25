@@ -1,0 +1,30 @@
+Update System Packages Always start by updating your package lists and upgrading existing packages: 
+
+Bash 
+
+sudo apt update sudo apt upgrade -y 
+
+Install Xen Packages Install the necessary Xen packages, including the hypervisor, tools, and the Xen-enabled kernel: 
+
+Bash 
+sudo apt install xen-hypervisor xen-tools xen-utils xen-utils-common xenstore-utils -y 
+
+This command will install the Xen hypervisor, the xen-tools suite for managing guest domains, and other essential utilities. 
+
+Configure GRUB The installation process typically configures GRUB to boot into the Xen-enabled kernel by default. However, it's good practice to verify this. 
+
+Edit 
+/etc/default/grub 
+
+if necessary and ensure a line similar to the following is present and uncommented, pointing to the Xen kernel: GRUB_DEFAULT="0" Then, update GRUB: 
+
+Bash 
+sudo update-grub 
+
+Reboot into Xen Reboot your system to load the Xen hypervisor: 
+
+Bash 
+sudo reboot 
+
+Verify Xen Installation After rebooting, log in and verify that Xen is running: Bash sudo xl list If Xen is running correctly, you should see output similar to this, indicating Dom0 (your host OS) is active: Name.         ID   Mem VCPUs​State  Time(s) Domain-0           0  1759     2     r-----    62.5
+
